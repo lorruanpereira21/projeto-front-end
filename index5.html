@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Lucena</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header>
+    <img src="img/logo (3).png" alt="Logo Studio Lucena" class="logo" />
+    <nav>
+      <ul>
+        <li><a href="#banner">Início</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#avaliacoes">Avaliações</a></li>
+        <li><a href="#antes-depois">Antes e Depois</a></li>
+        <li><a href="#horario">Horário</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="banner">
+      <img src="img/banner.png" alt="Banner do salão" />
+    </section>
+
+    <section id="servicos">
+      <h2>Serviços</h2>
+      <ul>
+        <li>Aplicação de Mega Hair</li>
+        <li>Progressiva</li>
+        <li>Tratamento Capilar</li>
+        <li>Alongamento de Unha</li>
+      </ul>
+    </section>
+
+    <section id="avaliacoes">
+      <h2>Deixe sua Avaliação</h2>
+      <form id="formAvaliacao">
+        <label for="nomeAvaliador">Nome:</label>
+        <input type="text" id="nomeAvaliador" required />
+
+        <label for="comentario">Comentário:</label>
+        <textarea id="comentario" rows="4" required></textarea>
+
+        <label for="nota">Nota:</label>
+        <select id="nota" required>
+          <option value="">Selecione</option>
+          <option value="⭐">⭐</option>
+          <option value="⭐⭐">⭐⭐</option>
+          <option value="⭐⭐⭐">⭐⭐⭐</option>
+          <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+          <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+        </select>
+
+        <button type="submit">Enviar Avaliação</button>
+      </form>
+
+      <div id="listaAvaliacoes"></div>
+    </section>
+
+    <section id="antes-depois">
+      <h2>Antes e Depois</h2>
+      <div class="comparacao">
+        <img src="img/antes1.jpeg" alt="Antes 1" />
+        <img src="img/depois2.jpeg" alt="Depois 2" />
+        <img src="img/foto5.jpeg" alt="foto5" />
+        <img src="img/foto4.jpeg" alt="foto4" />
+        <img src="img/foto1.jpeg" alt="foto1" />
+      </div>
+    </section>
+
+    <section id="horario">
+      <h2>Horário de Funcionamento</h2>
+      <ul>
+        <li>🕘 Segunda a Sexta: 09h às 19h</li>
+        <li>🕘 Sábado: 09h às 17h</li>
+        <li class="fechado">⚠️ Domingo: Fechado</li>
+      </ul>
+    </section>
+
+    <section id="contato">
+      <h2>Agende seu horário</h2>
+      <form id="formulario">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required />
+
+        <label for="servico">Serviço:</label>
+        <select id="servico" required>
+          <option value="">Selecione</option>
+          <option value="mega">Mega Hair</option>
+          <option value="progressiva">Progressiva</option>
+          <option value="tratamento">Tratamento Capilar</option>
+          <option value="unha">Alongamento de Unha</option>
+        </select>
+
+        <label for="data">Data:</label>
+        <input type="date" id="data" required />
+
+        <label for="horario">Horário:</label>
+        <input type="time" id="horario" required />
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Studio Lucena. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Agendamento
+    document.getElementById("formulario").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const nome = document.getElementById("nome").value;
+      const servico = document.getElementById("servico").value;
+      const data = document.getElementById("data").value;
+      const horario = document.getElementById("horario").value;
+
+      if (!nome || !servico || !data || !horario) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+
+      alert("Agendamento realizado com sucesso!");
+      this.reset();
+    });
+
+    // Avaliações
+    document.getElementById("formAvaliacao").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const nome = document.getElementById("nomeAvaliador").value;
+      const comentario = document.getElementById("comentario").value;
+      const nota = document.getElementById("nota").value;
+
+      if (!nome || !comentario || !nota) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+
+      const novaAvaliacao = document.createElement("div");
+      novaAvaliacao.classList.add("avaliacao");
+      novaAvaliacao.innerHTML = `<p><strong>${nome}</strong> ${nota}</p><p>${comentario}</p>`;
+
+      document.getElementById("listaAvaliacoes").appendChild(novaAvaliacao);
+      this.reset();
+    });
+  </script>
+</body>
+
+</html>
